@@ -1,0 +1,1 @@
+# Loxberry_Solarmanager

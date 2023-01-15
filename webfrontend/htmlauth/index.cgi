@@ -6,7 +6,6 @@ use LoxBerry::System;
 use LoxBerry::Web;
 use LoxBerry::Log;
 
-
 #------------------------------------------------------------------------#
 # Logging sytem 
 #------------------------------------------------------------------------#
@@ -64,7 +63,7 @@ my %L = LoxBerry::Web::readlanguage($template, "language.ini"); #read settings f
 my $activated = $cgi->checkbox(-name => 'activated',
                                -checked => is_enabled($cfg{'MAIN.IS_ENABLED'}),
                                -value => 'True',
-                               -label => $L{'BASIC.LABEL_ENABLED'},
+                               -label => $L{'SETTINGS.LABEL_ENABLED'},
                                );
 
 # Den so erzeugten HTML-Code schreiben wir ins Template.

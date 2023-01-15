@@ -4,6 +4,8 @@
 <form method="post" data-ajax="false" name="main_form" id="main_form" action="./index.cgi">
 		<div class="form-group">
 			<table class="formtable" border="0" width="100%">
+				<tr><TMPL_VAR ACTIVATED>
+				</tr>
 				<tr>
 					<td width="25%">
 						<label id="labelSettingsSmId"><TMPL_VAR SETTINGS.LABEL_SMID></label>
@@ -31,9 +33,6 @@ $( document ).ready(function() {
 	validate_enable('#settingsSmId');
 }
 </script>
-
-<!-- The following variable shows a selectbox that was generated in the cgi script -->
-<TMPL_VAR ACTIVATED>
 
 <!-- Footer -->
 <p><TMPL_VAR FOOTER.GREETING></p>

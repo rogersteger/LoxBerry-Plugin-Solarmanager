@@ -28,11 +28,11 @@
 
 # To use important variables from command line use the following code:
 COMMAND=$0    # Zero argument is shell command
-PTEMPDIR=$1   # First argument is temp folder during install
+TEMPPDIR=$1   # First argument is temp folder during install
 PSHNAME=$2    # Second argument is Plugin-Name for scipts etc.
 PDIR=$3       # Third argument is Plugin installation folder
 PVERSION=$4   # Forth argument is Plugin version
-#LBHOMEDIR=$5 # Comes from /etc/environment now. Fifth argument is
+LBHOMEDIR=$5  # Comes from /etc/environment now. Fifth argument is
               # Base folder of LoxBerry
 PTEMPPATH=$6  # Sixth argument is full temp path during install (see also $1)
 
@@ -49,7 +49,7 @@ PBIN=$LBPBIN/$PDIR
 echo -n "<INFO> Current working folder is: "
 pwd
 echo "<INFO> Command is: $COMMAND"
-echo "<INFO> Temporary folder is: $PTEMPDIR"
+echo "<INFO> Temporary folder is: $TEMPPDIR"
 echo "<INFO> (Short) Name is: $PSHNAME"
 echo "<INFO> Installation folder is: $PDIR"
 echo "<INFO> Plugin version is: $PVERSION"
@@ -59,5 +59,16 @@ echo "<INFO> Plugin Template folder is: $PTEMPL"
 echo "<INFO> Plugin Data folder is: $PDATA"
 echo "<INFO> Plugin Log folder (on RAMDISK!) is: $PLOG"
 echo "<INFO> Plugin CONFIG folder is: $PCONFIG"
+
+echo "<INFO> Creating temporary folders for upgrading"
+mkdir -p /tmp/$TEMPPDIR\_upgrade
+mkdir -p /tmp/$TEMPPDIR\_upgrade/config
+mkdir -p /tmp/$TEMPPDIR\_upgrade/log
+
+echo "<INFO> Backing up existing config files"
+cp -p -v -r $LBHOMEDIR/config/plugins/$PDIR/ /tmp/$TEMPPDIR\_upgrade/config
+
+echo "<INFO> Backing up existing log files"
+cp -p -v -r $LBHOMEDIR/log/plugins/$PDIR/ /tmp/$TEMPPDIR\_upgrade/log
 
 exit 0

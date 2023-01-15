@@ -1,8 +1,40 @@
-<p><TMPL_VAR BASIC.WELCOME></p>
-<p><TMPL_VAR BASIC.SAMPLEPLUGIN_HINT></p>
-<p><TMPL_VAR BASIC.SAMPLEPLUGIN_BESTPRACTISE></p>
+<p><TMPL_VAR BASIC.LABEL_PLUGIN></p>
+
+<h2><TMPL_VAR BASIC.LABEL_SETTINGS></h2>
+<form method="post" data-ajax="false" name="main_form" id="main_form" action="./index.cgi">
+		<div class="form-group">
+			<table class="formtable" border="0" width="100%">
+				<tr>
+					<td width="25%">
+						<label id="labelSettingsSmId"><TMPL_VAR SETTINGS.LABEL_SMID></label>
+					</td>
+					<td width="50%">
+							<input id="settingsSmId" name="settingsSmId" type="text" data-validation-rule="special:alphanumeric" class="textfield" value="<TMPL_VAR SOLARMANAGER_CONFIG.ID>" 
+							data-validation-error-msg="<TMPL_VAR SETTINGS.HINT_SM_ID>">
+					</td>
+					<td width="5%" valign="middle">
+						&nbsp;
+					</td>
+					<td width="20%">
+						&nbsp;
+					</td>
+				</tr>
+		</table>
+	</div>
+</form>
+<script>
+$( document ).ready(function() {
+	// Activate on Load
+	disable();
+
+	// Validates
+	validate_enable('#settingsSmId');
+}
+</script>
 
 <!-- The following variable shows a selectbox that was generated in the cgi script -->
 <TMPL_VAR ACTIVATED>
+
+<!-- Footer -->
 <p><TMPL_VAR FOOTER.GREETING></p>
 

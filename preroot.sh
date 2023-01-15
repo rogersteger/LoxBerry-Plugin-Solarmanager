@@ -60,4 +60,11 @@ echo "<INFO> Plugin Data folder is: $PDATA"
 echo "<INFO> Plugin Log folder (on RAMDISK!) is: $PLOG"
 echo "<INFO> Plugin CONFIG folder is: $PCONFIG"
 
+#check python version
+PYTHON=`python --version`
+echo "<INFO> Python version: $PYTHON"
+
+#check if python requests is already installed
+apt-get install -y --only-upgrade python-requests
+
 exit 0

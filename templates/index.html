@@ -8,6 +8,31 @@
 				</tr>
 				<tr>
 					<td width="25%">
+						<label id="labelauto"><TMPL_VAR SETTINGS.LABEL_ENABLED></label>
+					</td>
+					<td width="50%">
+						<table border=0 width="100%">
+						<tr>
+						<td width="20%">
+						<fieldset>
+						<TMPL_VAR GETDATA>
+						</fieldset>
+						</td>
+						<td>
+						<TMPL_VAR CRON>
+						</td>
+						</tr>
+						</table>
+					</td>
+					<td width="5%" valign="middle">
+						&nbsp;
+					</td>
+					<td width="20%">
+						<font size="-1"><TMPL_VAR SETTINGS.HINT_FREE_ACCOUNT></font>
+					</td>
+				</tr>
+				<tr>
+					<td width="25%">
 						<label id="labelSettingsSmId"><TMPL_VAR SETTINGS.LABEL_SMID></label>
 					</td>
 					<td width="50%">
@@ -18,12 +43,37 @@
 						&nbsp;
 					</td>
 					<td width="20%">
-						&nbsp;
+						<font size="-1"><TMPL_VAR SETTINGS.HINT_SM_ID></font>
 					</td>
 				</tr>
+				<tr>
+					<td width="25%">
+						<label id="labelSettingUsername"><TMPL_VAR SETTINGS.LABEL_USERNAME></label>
+					</td>
+					<td width="50%">
+							<input id="settingsUsername" name="settingsUsername" type="text" data-validation-rule="special:alphanumeric" class="textfield" value="<TMPL_VAR SOLARMANAGER_CONFIG.USERNAME>" 
+							data-validation-error-msg="<TMPL_VAR SETTINGS.HINT_USERNAME>">
+					</td>
+					<td width="5%" valign="middle">
+						&nbsp;
+					</td>
+					<td width="20%">
+						<font size="-1"><TMPL_VAR SETTINGS.HINT_USERNAME></font>
+					</td>
+			</tr>
 		</table>
 	</div>
+	<p>
+	&nbsp;
+	</p>
+	<p>
+		<center>
+			<a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="delete" href="./index.cgi?form=1"><TMPL_VAR SETTINGS.BUTTON_CANCEL></a>
+				<button type="submit" form="main_form" id="btnsubmit" data-role="button" data-inline="true" data-mini="true" data-icon="check"><TMPL_VAR SETTINGS.BUTTON_SAVE></button>
+		</center>
 </form>
+</p>
+
 <script>
 $( document ).ready(function() {
 	// Activate on Load
@@ -31,6 +81,24 @@ $( document ).ready(function() {
 
 	// Validates
 	validate_enable('#settingsSmId');
+	
+	// Add some attributes PERL::CGI doesn't provide
+	$('select[name=getdata]').attr('data-role','flipswitch');
+	$('select[name=cron]').attr('data-mini','true');
+									
+	// Get Data
+	$( document ).on( 'change', '#getdata', function ( e ) {
+		if ( $( "select[name=getdata]" ).val()  === "1" ) {
+			//alert("An!");
+			$('#cron').removeClass('ui-disabled');
+			$('#cron').selectmenu('refresh');
+		} else {
+			//alert("Aus!");
+			$('#cron').addClass('ui-disabled');
+			$('#cron').selectmenu('refresh');
+		}
+	});
+									
 }
 </script>
 

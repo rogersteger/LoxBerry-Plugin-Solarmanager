@@ -66,6 +66,21 @@ my $activated = $cgi->checkbox(-name => 'activated',
                                -label => $L{'SETTINGS.LABEL_ENABLED'},
                                );
 
+  # GetData
+  @values = ('0', '1' );
+  %labels = (
+        '0' => $L{'SETTINGS.LABEL_OFF'},
+        '1' => $L{'SETTINGS.LABEL_ON'},
+    );
+  my $getdata = $cgi->popup_menu(
+        -name    => 'getdata',
+        -id      => 'getdata',
+        -values  => \@values,
+	-labels  => \%labels,
+	-default => $cfg->param('SERVER.GETDATA'),
+    );
+  $template->param( GETDATA => $getdata );
+  
 # Den so erzeugten HTML-Code schreiben wir ins Template.
 $template->param( ACTIVATED => $activated);
 
